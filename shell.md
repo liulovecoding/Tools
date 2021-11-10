@@ -14,10 +14,9 @@
 - `cd ~` ：返回主目录，~代表主目录(c/User/50657目录)
 - `cd ~/Desktop/cs61a/lab/lab00 `：在主目录下的桌面上的cs61a的lab文件夹找lab00文件
 
-`mkdir cs61a `:在当前目录下创建文件夹cs61a
-
-- `mv   <source path> <目的地 path>`：将给定源的文件移动到给定的目的地
-
+- linux:`mkdir cs61a `:在当前目录下创建文件夹cs61a
+- windows:`move <source path> <目的地 path>` //移动文件
+- linux:`mv <source path>  <目的地 path>`：将给定源的文件移动到给定的目的地
 - `mv  ~/Downloads/lab00   ~/Desktop/cs61a/lab` :移动文件lab00到lab文件夹中
 
 
