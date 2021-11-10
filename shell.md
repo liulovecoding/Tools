@@ -21,3 +21,5 @@ cd ~ ：返回主目录，~代表主目录(c/User/50657目录)
 ```python -i lab00.py ```:交互式运行lab00.py
 
 ```python -m doctest lab00.py```:运行lab00.py的文档字符串
+
+>note:bash vs\ code 被认定为一个参数， vs code 被认定为两个参数
