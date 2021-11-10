@@ -20,6 +20,8 @@
 
 - `mv  ~/Downloads/lab00   ~/Desktop/cs61a/lab` :移动文件lab00到lab文件夹中
 
+
+
 ```python```:打开python解释器(能写多行代码再运行)
 ```python lab00.py```:一次性运行lab00.py
 
