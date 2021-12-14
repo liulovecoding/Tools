@@ -20,13 +20,14 @@
 
 
 - 移动
-- `mv  ~/Downloads/lab   ~/Desktop/cs61a/` :移动文件lab到cs61a文件夹中
+- `mv  ~/Downloads/lab   ~/Desktop/cs61a/` :移动文件lab到cs61a文件夹中(cs61a后的/表示移入文件夹中)
 
 - 重命名
 - `mv hello he`:将hello重命名为he,因为是同一个目录的
 
 - 删除
-- `rm file1`: 从当前目录中删除 file1。如果file1不存在，它将不起作用
+- `rm file1`: 从当前目录中删除文件file1。如果file1不存在，它将不起作用
+- `rmdir lecture/`:删除当前目录下的文件夹lecture(前提是lesture是空的)
 
 
 - 复制
