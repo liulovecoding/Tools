@@ -30,7 +30,7 @@
 
 
 - 复制
-- cp lab1/1  lab2/2:把lab1目录下的1复制给lab2目录下的2
+- `cp lab1/1    lab2/2`:把lab1目录下的1复制给lab2目录下的2
 
 - 创建目录
 - `mkdir lecture`:在当前目录下创建文件夹lecture
