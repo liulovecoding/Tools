@@ -21,8 +21,6 @@
 
 
 
-
-
 文件的状态
 
 > modified：修改，staged：暂存
@@ -99,7 +97,9 @@
 
 
 
-合并 ：`git merge branch` //把分支branch 合并到当前所在分支上(假设为main)
+#### 合并 
+
+`git merge branch` //把分支branch 合并到当前所在分支上(假设为main)
 
 > merge命令创建一个将两个分支连接在一起的新提交，并将main分支上最新的节点指向branch分支上最新的节点
 
