@@ -2,13 +2,3 @@
 
 
 
-```python```:打开python解释器(能写多行代码再运行)
-```python lab00.py```:一次性运行lab00.py
-
-```python -i```:打开python解释器(写一行运行一行)
-
-```python -i lab00.py ```:交互式运行lab00.py
-
-```python -m doctest lab00.py```:运行lab00.py的文档字符串
-
->note:bash vs\ code 被认定为一个参数， vs code 被认定为两个参数
