@@ -64,17 +64,35 @@
   >  *checkout 命令不会更改提交历史记录*
   
 
+#### 遥控器
 
-
-- `git remote add name URL `：将本地仓库与网站上的仓库关联起来 
+- 添加：`git remote add name URL `：将本地仓库与网站上的仓库关联起来 
 
 > name: 遥控器的名字  ，URL：要关联的网站上的仓库的URL
 >
 > 用于push,pull
 
-- `git remote -v`：查看关联的存储库
+- 查看：`git remote -v`：查看关联的存储库
+- 重命名：`git remote rename old-name new-name`
+- 删除：`git remote rm name`
+
+> 按照约定，调用主远程的名称是`origin`（对于原始远程存储库）
+>
+> 当你克隆一个远程时,该远程是 `origin`
 
 - `git pull(push) name main` : 拉(推)到遥控器名字为name的存储库上的man分支
+
+> `pull`: 这相当于一个`fetch + merge`. 不仅会`pull`获取最新的更改，还会将更改合并到您的`HEAD` 分支中。
+
+
+
+
+
+`git fetch name`
+
+> 这类似于下载最新的提交。它不会将它们合并到本地仓库的当前分支中
+>
+> 用于获取从远程获取一些当前不在本地存储库中的新提交但不想合并到本地中
 
 
 
@@ -97,13 +115,29 @@
 
 
 
+
+
 #### 合并 
 
 `git merge branch` //把分支branch 合并到当前所在分支上(假设为main)
 
 > merge命令创建一个将两个分支连接在一起的新提交，并将main分支上最新的节点指向branch分支上最新的节点
 
-合并冲突：尝试合并两个可能有冲突的信息的分支。如果两个分支上的提交更改了相同的文件，则可能会发生这种情况。Git 足够复杂，可以解决许多更改，即使它们发生在同一个文件中（尽管位置不同）。但是，有时 Git 无法解决冲突，因为更改会影响相同的方法/代码行。在这些情况下，它会将来自不同分支的两个更改作为*合并冲突*呈现给您
+git 将合并这两个版本并添加一个额外的提交，让您知道您已合并。 这很烦人，并导致提交历史非常混乱。 这就是`rebasing `发挥作用的地方。
+
+当您将更改推送到` Github` 并且远程副本已被修改时，系统会要求您拉入更改。 这是您通常会遇到合并冲突的地方。 此时可用使用 `rebase` 标志来拉取：
+
+```
+git pull --rebase origin master
+```
+
+来自服务器的更改将应用于您的工作副本，并且您的提交将放在顶部。
+
+
+
+#### 合并冲突
+
+尝试合并两个可能有冲突的信息的分支。如果两个分支上的提交更改了相同的文件，则可能会发生这种情况。Git 足够复杂，可以解决许多更改，即使它们发生在同一个文件中（尽管位置不同）。但是，有时 Git 无法解决冲突，因为更改会影响相同的方法/代码行。在这些情况下，它会将来自不同分支的两个更改作为*合并冲突*呈现给您
 
 #### 解决合并冲突
 
@@ -144,3 +178,57 @@ for (int i = 0; i < results.length - 1; i++) {
 ```
 
 对由冲突解决标记划分的所有段执行此操作可以解决您的冲突。对所有冲突的文件执行此操作后，您可以提交。这将完成您的合并
+
+
+
+#### 合并提交
+
+您可能会发现自己创建了许多小提交，这些小提交带有微小的相关更改，这些更改实际上可以存储在单个提交中。在这里，您需要使用`rebase`命令压缩您的提交。假设你有四个我想合并的提交。您将输入以下内容：
+
+```
+$ git rebase -i HEAD~4
+```
+
+从这里，系统会提示您选择一个提交以将其他提交折叠到其中，并选择应该合并哪些提交：
+
+```bash
+pick 01d1124 Adding license
+pick 6340aaa Moving license into its own file
+pick ebfd367 Jekyll has become self-aware.
+pick 30e0ccb Changed the tagline in the binary, too.
+
+# Rebase 60709da..30e0ccb onto 60709da
+#
+# Commands:
+#  p, pick = use commit
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+```
+
+最好选择最顶层的提交并将其余提交压缩到其中。您可以通过将文本文件更改为此：
+
+```bash
+pick 01d1124 Adding license
+
+
+squash 6340aaa Moving license into its own file
+squash ebfd367 Jekyll has become self-aware.
+squash 30e0ccb Changed the tagline in the binary, too.
+
+# Rebase 60709da..30e0ccb onto 60709da
+#
+# Commands:
+#  p, pick = use commit
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+# However, if you remove everything, the rebase will be aborted.
+#
+```
+
+瞧！所有这些微小的提交都合并为一个提交，并且您拥有一个更清晰的日志文件。
