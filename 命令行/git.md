@@ -64,7 +64,7 @@
   >  *checkout 命令不会更改提交历史记录*
   
 
-
+- **`git checkout skeleton/master -- <file>`将文件恢复到其框架代码状态**
 
 #### 遥控器
 
